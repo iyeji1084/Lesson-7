@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>to부정사 단계별 연습</title>
+<style>
+:root{--bg:#F6FAFC;--card:#FFFFFF;--ink:#1B2A3A;--muted:#5F7186;--navy:#0B3C5D;--teal:#0B7A8F;--coral:#D1495B;--amber:#F2A541;--line:#BFD7DF;--ok:#1F7A4F;--okbg:#E3F4EA;--badbg:#FCE8EB;--tealbg:#E8F3F7;--onaccent:#FFFFFF}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0F1A24;--card:#16242F;--ink:#E8F1F6;--muted:#9FB3C4;--navy:#9ED3E6;--teal:#4FC3D9;--coral:#FF8A98;--amber:#F2B45A;--line:#2D4455;--ok:#6FD3A0;--okbg:#173B2B;--badbg:#47202A;--tealbg:#173342;--onaccent:#0F1A24}}
+:root[data-theme="dark"]{--bg:#0F1A24;--card:#16242F;--ink:#E8F1F6;--muted:#9FB3C4;--navy:#9ED3E6;--teal:#4FC3D9;--coral:#FF8A98;--amber:#F2B45A;--line:#2D4455;--ok:#6FD3A0;--okbg:#173B2B;--badbg:#47202A;--tealbg:#173342;--onaccent:#0F1A24}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif;font-size:17px;line-height:1.6}
+main{max-width:720px;margin:0 auto;padding:16px}
+h1{font-size:22px;margin:4px 0 12px;color:var(--navy)}
+h2{font-size:20px;margin:0 0 10px;color:var(--navy)}
+.steps{display:flex;gap:6px;margin-bottom:14px}
+.pill{flex:1;height:10px;border-radius:6px;background:var(--line)}
+.pill.on{background:var(--amber)}.pill.done{background:var(--teal)}
+.stepname{font-size:14px;color:var(--muted);margin-bottom:8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.lesson{background:var(--tealbg)}
+.big{font-size:24px;font-weight:700;text-align:center;margin:8px 0}
+.w{color:var(--coral);font-weight:700}.s{color:var(--teal);font-weight:700}.v{color:var(--navy);font-weight:700}.cm{color:var(--coral);font-weight:700;font-size:1.3em}
+.kr{color:var(--muted);margin:2px 0 8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:10px 0 2px}
+.chip{text-align:center}
+.chip b{display:block;padding:6px 12px;border-radius:10px;background:var(--card);border:2px solid var(--line);font-size:18px}
+.chip small{color:var(--muted);font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:520px){.two{grid-template-columns:1fr}}
+.box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.opt,.btn,.tile{font:inherit;color:var(--ink);cursor:pointer;border-radius:12px;border:2px solid var(--line);background:var(--card);padding:10px 14px;min-height:44px}
+.opt{display:block;width:100%;text-align:left;margin:8px 0}
+.opt:hover,.tile:hover{border-color:var(--teal)}
+.opt.bad{background:var(--badbg);border-color:var(--coral);opacity:.8}
+.opt.good{background:var(--okbg);border-color:var(--ok)}
+.btn{background:var(--teal);border-color:var(--teal);color:var(--onaccent);font-weight:700}
+.btn.sec{background:var(--card);color:var(--ink);border-color:var(--line)}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+.nav{display:flex;justify-content:space-between;gap:10px;margin:6px 0 24px}
+.fb{min-height:28px;font-weight:700;margin:8px 0}
+.fb.ok{color:var(--ok)}.fb.no{color:var(--coral)}
+.area{min-height:56px;border:2px dashed var(--line);border-radius:12px;padding:8px;display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.pool{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.tile{padding:8px 12px;font-size:18px}
+input[type=text]{font:inherit;color:var(--ink);background:var(--card);border:2px solid var(--line);border-radius:10px;padding:8px 10px;width:100%;margin:4px 0 10px;min-height:44px}
+.cnt{color:var(--muted);font-size:14px}
+table{width:100%;border-collapse:collapse}td,th{padding:8px;border-bottom:1px solid var(--line);text-align:left}
+.hintrow{margin-top:10px}.hint{background:var(--tealbg);border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin-top:8px}.hint ol{margin:6px 0 0;padding-left:22px}.hint li{margin:4px 0}
+.bankbox{margin:0 0 14px}.bankbox summary{cursor:pointer;color:var(--teal);font-weight:700;min-height:32px}.bank{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.chipb{font:inherit;color:var(--ink);cursor:pointer;border-radius:10px;border:2px solid var(--line);background:var(--card);padding:4px 10px;text-align:left;line-height:1.3;min-height:44px}.chipb small{display:block;color:var(--muted);font-size:13px}.chipb:hover{border-color:var(--teal)}
+.wd{margin:10px 0}.wdl{background:var(--tealbg);border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin-top:8px;font-size:16px}.wdl div{margin:2px 0}.wdl b{color:var(--teal)}
+@media print{.nav,.steps,.noprint{display:none}}
+</style>
+</head>
+<body>
+<main>
+<h1>to부정사(목적) 단계별 연습 🎯</h1>
+<div class="steps" id="steps"></div>
+<div id="app"></div>
+</main>
+<script>
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const shuffle=a=>{let b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b};
+const OKS=['정답! 👍','잘했어요! ✨','맞아요! 🎉'], NOS=['앗, 다시 한번 생각해 봐요.','아쉬워요. 다시 골라 봐요!'];
+
+const S=[
+{title:'1단계 · to부정사의 뜻과 단어',lesson:`<p><span class="w">to + 동사원형</span>은 <b>'~하기 위해서'</b>라는 뜻이에요. 어떤 행동의 <b>목적</b>을 말해요.</p>
+<p class="big">Fruit bats go there <span class="w">to eat</span> wild fruit.</p><p class="kr" style="text-align:center">과일박쥐들은 야생 과일을 <b>먹기 위해서</b> 그곳에 간다.</p><p>먼저 문장에 나오는 단어부터 익혀 볼까요?</p>`,
+type:'mcq',items:[
+{q:'to + 동사원형',a:'~하기 위해서',o:['~할 때','~하고 나서']},{q:'protect',a:'보호하다',o:['공격하다','떠나다']},{q:'energy',a:'에너지',o:['음식','공기']},
+{q:'healthy',a:'건강한',o:['배고픈','피곤한']},{q:'borrow',a:'빌리다',o:['빌려주다','사다']},{q:'exam',a:'시험',o:['숙제','수업']}]},
+{title:'2단계 · to부정사 덩어리 만들기',lesson:`<p><b>to</b> 뒤에는 항상 <b>동사원형</b>이 와요. 이 덩어리가 <b>'~하기 위해서'</b>가 돼요.</p>
+<div class="chips"><div class="chip"><b class="w">to</b><small>~하기 위해서</small></div><div class="chip"><b class="v">eat</b><small>동사원형</small></div><div class="chip"><b>wild fruit</b><small>나머지</small></div></div>
+<p class="kr" style="text-align:center">to + 동사원형 … = …하기 위해서</p><p>우리말을 보고 낱말을 눌러 to부정사 덩어리를 만들어 보세요.</p>`,
+type:'order',items:[
+{kr:'야생 과일을 먹기 위해서',t:['to','eat','wild fruit']},{kr:'붉은게들을 보호하기 위해서',t:['to','protect','red crabs']},{kr:'그것으로부터 에너지를 얻기 위해서',t:['to','get','energy','from it']},
+{kr:'건강해지기 위해서',t:['to','be','healthy']},{kr:'새 차를 사기 위해서',t:['to','buy','a new car']}]},
+{title:'3단계 · 행동과 목적 연결하기',lesson:`<p>"왜?"라고 물으면 <b>to + 동사원형</b>으로 대답할 수 있어요.</p>
+<div class="two"><div class="box"><b>Q</b> Why do they travel such a long way?</div><div class="box"><b>A</b> They travel <span class="w">to get</span> food.<div class="kr">먹이를 얻기 위해서 여행해요.</div></div></div><p>우리말을 보고 알맞은 목적을 고르세요.</p>`,
+type:'mcq',items:[
+{kr:'나는 건강을 유지하기 위해 매일 운동한다.',q:'I exercise every day ____',a:'to stay healthy.',o:['to cool the room.','to buy a new bag.']},
+{kr:'그녀는 방을 시원하게 하기 위해 선풍기를 켰다.',q:'She turned on the fan ____',a:'to cool the room.',o:['to stay healthy.','to get a good grade.']},
+{kr:'나는 친구를 파티에 초대하기 위해 전화했다.',q:'I called my friend ____',a:'to invite her to a party.',o:['to learn new songs.','to cool the room.']},
+{kr:'그는 새 가방을 사기 위해 돈을 모은다.',q:'He saves money ____',a:'to buy a new bag.',o:['to learn new songs.','to stay healthy.']},
+{kr:'그들은 좋은 성적을 받기 위해 열심히 공부한다.',q:'They study hard ____',a:'to get a good grade.',o:['to invite her to a party.','to cool the room.']}]},
+{title:'4단계 · 명사적 용법 vs 부사적 용법',lesson:`<p>to부정사는 두 가지로 쓰였어요. <b>to ~를 빼 보면</b> 구분할 수 있어요!</p>
+<div class="two"><div class="box"><b>명사적 용법</b><br>~하는 것, ~하기<br><span class="w">I want</span> to learn new songs.<div class="kr">to~를 빼면 "I want"만 남아 불완전해요.</div></div>
+<div class="box"><b>부사적 용법(목적)</b><br>~하기 위해서<br>I go to a guitar class <span class="w">to learn</span> new songs.<div class="kr">to~를 빼도 문장이 완전하고, Why?로 물으면 말이 돼요.</div></div></div>`,
+type:'mcq',fixed:true,items:[
+{kr:'나는 새 노래를 배우고 싶다.',q:'I want <span class="w">to learn</span> new songs.',a:'명사적 용법 (~하는 것)',o:['부사적 용법 (~하기 위해서)']},
+{kr:'나는 새 노래를 배우기 위해 기타 학원에 간다.',q:'I go to a guitar class <span class="w">to learn</span> new songs.',a:'부사적 용법 (~하기 위해서)',o:['명사적 용법 (~하는 것)']},
+{kr:'그녀는 방을 시원하게 하기 위해 선풍기를 켰다.',q:'She turned on the fan <span class="w">to cool</span> the room.',a:'부사적 용법 (~하기 위해서)',o:['명사적 용법 (~하는 것)']},
+{kr:'나는 피아노 치는 것을 좋아한다.',q:'I like <span class="w">to play</span> the piano.',a:'명사적 용법 (~하는 것)',o:['부사적 용법 (~하기 위해서)']},
+{kr:'우리는 건강해지기 위해 매일 운동한다.',q:'We exercise every day <span class="w">to stay</span> healthy.',a:'부사적 용법 (~하기 위해서)',o:['명사적 용법 (~하는 것)']},
+{kr:'해파리들은 태양 쪽으로 헤엄치기 시작한다.',q:'The jellyfish begin <span class="w">to swim</span> toward the sun.',a:'명사적 용법 (~하는 것)',o:['부사적 용법 (~하기 위해서)']}]},
+{title:'5단계 · to부정사 문장 배열하기',lesson:`<p>순서를 만드는 방법이에요.</p><p>① <b>누가 무엇을 한다</b>를 먼저 쓴다 → ② 그 뒤에 <span class="w">to + 동사원형</span>(왜 하는지)을 붙인다.</p>
+<p>낱말을 눌러 전체 문장을 완성해 보세요.</p>`,
+type:'order',items:[
+{kr:'과일박쥐들은 야생 과일을 먹기 위해 그곳에 간다.',t:['Fruit','bats','go','there','to','eat','wild','fruit.'],h:[['Fruit bats','과일박쥐들은'],['go there','그곳에 간다'],['to eat wild fruit','야생 과일을 먹기 위해']]},
+{kr:'황금해파리들은 그것으로부터 에너지를 얻기 위해 태양을 따라간다.',t:['Golden','jellyfish','follow','the','sun','to','get','energy','from','it.'],h:[['Golden jellyfish','황금해파리들은'],['follow the sun','태양을 따라간다'],['to get energy from it','그것으로부터 에너지를 얻기 위해']]},
+{kr:'우리는 건강해지기 위해 매일 아침 운동한다.',t:['We','work','out','every','morning','to','be','healthy.'],h:[['We','우리는'],['work out every morning','매일 아침 운동한다'],['to be healthy','건강해지기 위해']]},
+{kr:'그들은 새 차를 사기 위해 돈을 모았다.',t:['They','saved','money','to','buy','a','new','car.'],h:[['They','그들은'],['saved money','돈을 모았다'],['to buy a new car','새 차를 사기 위해']]},
+{kr:'나는 시험에 통과하기 위해 열심히 공부할 것이다.',t:['I','will','study','hard','to','pass','the','exam.'],h:[['I will study hard','나는 열심히 공부할 것이다'],['to pass the exam','시험에 통과하기 위해']]}]},
+{title:'6단계 · 나의 to부정사 문장 쓰기',lesson:`<p>이제 <b>내 이야기</b>로 목적을 써 봐요.</p><p class="kr">Why do you use social media? → I use it <b>to post pictures</b>.</p><p>빈칸에 <b>동사원형 …</b>을 넣어 "~하기 위해서" 문장을 완성하세요.</p>`,
+type:'write',frames:['I use social media to ','I study English to ','I exercise every day to '],bank:[
+[['talk with my friends','친구들과 이야기하다'],['chat with my family','가족과 대화하다'],['send messages','메시지를 보내다'],['make new friends','새 친구를 사귀다'],['post pictures','사진을 올리다'],['share photos','사진을 공유하다'],['watch funny videos','웃긴 영상을 보다'],['listen to music','음악을 듣다'],['see my favorite singers','좋아하는 가수를 보다'],['play games','게임을 하다'],['find information','정보를 찾다'],['learn new things','새로운 것을 배우다'],['relax','쉬다'],['laugh','웃다']],
+[['talk with foreign friends','외국인 친구와 이야기하다'],['understand English songs','영어 노래를 이해하다'],['watch movies','영화를 보다'],['read English books','영어책을 읽다'],['get a good grade','좋은 성적을 받다'],['pass the exam','시험에 통과하다'],['travel to other countries','다른 나라를 여행하다'],['learn about other cultures','다른 문화를 배우다'],['get a good job','좋은 직업을 얻다'],['make my dream come true','꿈을 이루다'],['help my friends','친구들을 돕다'],['speak English well','영어를 잘 말하다']],
+[['stay healthy','건강을 유지하다'],['be healthy','건강해지다'],['get stronger','더 튼튼해지다'],['feel good','기분이 좋아지다'],['relax','긴장을 풀다'],['have fun','즐겁게 지내다'],['sleep well','잠을 잘 자다'],['grow taller','키가 크다'],['run fast','빨리 달리다'],['play soccer well','축구를 잘하다'],['win the game','경기에서 이기다'],['keep my body strong','몸을 튼튼하게 유지하다']]]}
+];
+const res=S.map(()=>({ok:0,total:0,done:false}));let cur=0,texts=['','',''],stuName='';
+const stepsEl=document.getElementById('steps'),app=document.getElementById('app');
+
+function bar(){stepsEl.innerHTML=S.concat([0]).map((_,i)=>`<div class="pill ${i<cur?'done':i===cur?'on':''}"></div>`).join('')}
+function render(){
+ bar();window.scrollTo(0,0);
+ if(cur===S.length)return summary();
+ const st=S[cur];
+ app.innerHTML=`<div class="stepname">${cur+1} / ${S.length}</div><section class="card lesson"><h2>${st.title}</h2>${st.lesson}</section><section class="card" id="prac"></section>
+ <div class="nav"><button class="btn sec" id="prev" ${cur===0?'disabled':''}>◀ 이전</button><button class="btn" id="next" ${res[cur].done?'':'disabled'}>${cur===S.length-1?'결과 보기 ▶':'다음 단계 ▶'}</button></div>`;
+ document.getElementById('prev').onclick=()=>{cur--;render()};
+ document.getElementById('next').onclick=()=>{cur++;render()};
+ PR[st.type](st,document.getElementById('prac'),res[cur]);
+}
+function finish(r){r.done=true;const n=document.getElementById('next');if(n)n.disabled=false}
+
+const RAW=`animal:동물|arrive:도착하다|asleep:잠이 든|away:멀리, 떨어져|bag:가방|band:밴드, 악단|baseball:야구|bat:박쥐|begin:시작하다|began:시작했다 (begin의 과거)|best:가장 좋은|bike:자전거|bird:새|birthday:생일|blue:푸른, 파란|book:책|borrow:빌리다|bread:빵|bridge:다리|build:짓다, (다리를) 놓다|buy:사다|cake:케이크|call:전화하다, 부르다|came:왔다 (come의 과거)|car:자동차|change:바꾸다, 변하다|chocolate:초콜릿|class:수업, 반|close:닫다, 폐쇄하다|color:색깔|cook:요리하다|cool:시원하게 하다, 시원한|crab:게|cry:울다|day:날, 하루|dog:개|door:문|early:일찍|eat:먹다|energy:에너지|enjoy:즐기다|every:모든, ~마다|everyone:모든 사람|exam:시험|exercise:운동하다, 운동|face:얼굴|fall:떨어지다 (fall asleep = 잠들다)|fan:선풍기|fashionable:멋진, 유행하는|feel:느끼다, ~한 기분이 들다|fell:떨어졌다, 빠졌다 (fall의 과거)|find:찾다|follow:따라가다|friend:친구|fruit:과일|game:경기, 게임|get:얻다, 받다|go:가다|golden:황금빛의|good:좋은|grade:성적, 학년|grandma:할머니|guitar:기타|happy:행복한|hard:열심히, 어려운|hat:모자|healthy:건강한|hear:듣다|heard:들었다 (hear의 과거)|helmet:헬멧|help:돕다|hiking:하이킹, 도보 여행|home:집|hope:바라다, 희망하다|indoors:실내에서, 집 안에|invite:초대하다|jellyfish:해파리|join:가입하다, 함께하다|joke:농담|laugh:웃다|learn:배우다|leave:떠나다|left:떠났다 (leave의 과거)|letter:편지|library:도서관|like:좋아하다|live:살다|look:~하게 보이다, 보다|loudly:크게, 시끄럽게|made:만들었다 (make의 과거)|make:만들다|map:지도|march:행진하다|meeting:회의|media:매체|million:100만, 수많은|money:돈|morning:아침|move:움직이다, 이사하다|movie:영화|nature:자연|need:필요하다|nervous:긴장한|new:새로운|next:다음의, 옆의|ocean:바다, 대양|old:나이 든, ~살의|only:겨우, 오직|orange:오렌지색(의)|other:다른|out:밖으로|over:끝난, ~위에|park:공원|party:파티|people:사람들|piano:피아노|picture:사진, 그림|place:장소, 집|play:연주하다, 놀다, (경기를) 하다|post:(글·사진을) 올리다|practice:연습하다|protect:보호하다|rain:비, 비가 오다|rainy:비가 오는|ran:달렸다 (run의 과거)|read:읽다|red:붉은|ride:(탈것을) 타다|rise:(해가) 뜨다|road:도로|room:방|run:달리다|save:모으다, 저축하다|saw:보았다 (see의 과거)|school:학교|season:계절|seat:자리, 좌석|see:보다|set:(해가) 지다|sing:노래하다|sky:하늘|social:사회적인|song:노래|soon:곧|spend:(시간을) 보내다, (돈을) 쓰다|stadium:경기장|start:시작하다|stay:유지하다, 머무르다|stop:멈추다, 그치다|store:가게|study:공부하다|sun:해, 태양|sunglasses:선글라스|swim:헤엄치다|take:(시험을) 보다, 가지다|talk:이야기하다|teacher:선생님|test:시험|thank:감사하다|theater:극장|themselves:그들 자신|time:시간|tired:피곤한|together:함께|toward:~쪽으로|travel:여행하다, 이동하다|turn:변하다, (turn on) 켜다|use:사용하다|visit:방문하다|walk:걷다, 산책하다|want:원하다|warm:따뜻한|watch:보다, 지켜보다|wear:입다, 쓰다, 착용하다|went:갔다 (go의 과거)|way:길, 방법|wild:야생의|wore:입었다, 썼다 (wear의 과거)|write:쓰다|wrote:썼다 (write의 과거)|year:해, 년|young:어린`;
+const DICT={};RAW.split('|').forEach(p=>{const i=p.indexOf(':');if(i>0)DICT[p.slice(0,i).trim()]=p.slice(i+1).trim()});
+function findW(w){
+ const c=[w,w.replace(/ies$/,'y'),w.replace(/es$/,''),w.replace(/s$/,''),w.replace(/ied$/,'y'),w.replace(/ed$/,''),w.replace(/ed$/,'e'),w.replace(/(.)\1ed$/,'$1'),w.replace(/ing$/,''),w.replace(/ing$/,'e'),w.replace(/(.)\1ing$/,'$1'),w.replace(/er$/,'')];
+ for(const x of c){if(x&&DICT[x])return [x,DICT[x]]}
+ return null;
+}
+function wordsIn(t){const seen={},out=[];(String(t).replace(/<[^>]+>/g,' ').toLowerCase().match(/[a-z]+/g)||[]).forEach(w=>{const f=findW(w);if(f&&!seen[f[0]]){seen[f[0]]=1;out.push([w,f[0],f[1]])}});return out}
+function hintUI(box,text,before){
+ const ws=wordsIn(text);if(!ws.length)return;
+ const wrap=document.createElement('div');wrap.className='wd';
+ const b=document.createElement('button');b.type='button';b.className='btn sec';b.textContent='📖 단어 뜻 보기';
+ const list=document.createElement('div');list.className='wdl';list.hidden=true;
+ ws.forEach(([w,x,m])=>{const r=document.createElement('div');const s=document.createElement('b');s.textContent=w===x?w:w+' ('+x+')';r.append(s,' — '+m);list.appendChild(r)});
+ b.onclick=()=>{list.hidden=!list.hidden;b.textContent=list.hidden?'📖 단어 뜻 보기':'📖 단어 뜻 닫기'};
+ wrap.append(b,list);box.insertBefore(wrap,before||null);
+}
+const PR={
+mcq(st,el,r){
+ const items=st.items;let i=0;
+ r.total=items.length;
+ const show=()=>{
+  const it=items[i];let wrong=false;
+  const opts=st.fixed?[it.a].concat(it.o).sort():shuffle([it.a].concat(it.o));
+  el.innerHTML=`<div class="cnt">문제 ${i+1} / ${items.length}</div>${it.kr?`<p class="kr">${it.kr}</p>`:''}<p class="big">${it.q}</p><div id="o"></div><div class="fb" id="fb" aria-live="polite"></div><div id="nx"></div>`;
+  const o=el.querySelector('#o'),fb=el.querySelector('#fb');
+  if(it.kr)hintUI(el,it.q+' '+it.a+' '+it.o.join(' '),fb);
+  opts.forEach(t=>{const b=document.createElement('button');b.className='opt';b.textContent=t;
+   b.onclick=()=>{
+    if(t===it.a){b.classList.add('good');if(!wrong)r.ok++;fb.className='fb ok';fb.textContent=pick(OKS);
+     o.querySelectorAll('.opt').forEach(x=>x.disabled=true);
+     const nx=el.querySelector('#nx');
+     if(i<items.length-1){nx.innerHTML='<button class="btn">다음 문제 ▶</button>';nx.firstChild.onclick=()=>{i++;show()}}
+     else{fb.textContent+=' 이 단계를 모두 마쳤어요!';finish(r)}
+    }else{wrong=true;b.classList.add('bad');b.disabled=true;fb.className='fb no';fb.textContent=pick(NOS)}
+   };o.appendChild(b)});
+ };
+ show();
+},
+order(st,el,r){
+ const items=st.items;let i=0;r.total=items.length;
+ const show=()=>{
+  const it=items[i];let tried=false,used=[];
+  let pool=it.t.map((t,k)=>({t,k}));
+  do{pool=shuffle(pool)}while(pool.length>1&&pool.map(p=>p.k).join()===it.t.map((_,k)=>k).join());
+  el.innerHTML=`<div class="cnt">문제 ${i+1} / ${items.length}</div><p class="big" style="font-size:20px">${it.kr}</p><div class="area" id="ar"></div><div class="pool" id="pl"></div><div class="fb" id="fb" aria-live="polite"></div>
+  <div><button class="btn sec" id="rs">다시 놓기</button> <button class="btn" id="ck">확인</button> <span id="nx"></span></div>${it.h?'<div class="hintrow"><button class="btn sec" id="hb">💡 힌트 보기</button></div><div class="hint" id="hx" aria-live="polite" hidden></div>':''}`;
+  const ar=el.querySelector('#ar'),pl=el.querySelector('#pl'),fb=el.querySelector('#fb');
+  hintUI(el,it.t.join(' '),el.querySelector('#rs').parentNode);
+  const draw=()=>{
+   ar.innerHTML='';pl.innerHTML='';
+   used.forEach(p=>{const b=document.createElement('button');b.className='tile';b.textContent=p.t;b.onclick=()=>{used=used.filter(x=>x!==p);draw()};ar.appendChild(b)});
+   pool.filter(p=>!used.includes(p)).forEach(p=>{const b=document.createElement('button');b.className='tile';b.textContent=p.t;b.onclick=()=>{used.push(p);draw()};pl.appendChild(b)});
+  };
+  draw();
+  el.querySelector('#rs').onclick=()=>{used=[];fb.textContent='';draw()};
+  const hb=el.querySelector('#hb');
+  if(hb){let n=0;const hx=el.querySelector('#hx');
+   hb.onclick=()=>{n++;const H=it.h;hx.hidden=false;
+    hx.innerHTML='<b>뜻 덩어리 순서</b> (누가·무엇을 → 왜)<ol>'+H.slice(0,n).map(c=>`<li><span class="w">${c[0]}</span> <span class="kr">${c[1]}</span></li>`).join('')+'</ol>';
+    hb.textContent=n<H.length?'💡 다음 힌트 ('+n+'/'+H.length+')':'💡 힌트를 모두 봤어요';
+    if(n>=H.length)hb.disabled=true};
+  }
+  el.querySelector('#ck').onclick=()=>{
+   if(used.length<pool.length){fb.className='fb no';fb.textContent='낱말을 모두 사용해 보세요.';return}
+   const ans=used.map(p=>p.t).join(' ');
+   if(ans===it.t.join(' ')){if(!tried)r.ok++;fb.className='fb ok';fb.textContent=pick(OKS)+'  '+ans;
+    ar.querySelectorAll('button').forEach(b=>b.disabled=true);el.querySelector('#ck').disabled=true;el.querySelector('#rs').disabled=true;
+    const nx=el.querySelector('#nx');
+    if(i<items.length-1){nx.innerHTML='<button class="btn">다음 문제 ▶</button>';nx.firstChild.onclick=()=>{i++;show()}}
+    else{fb.textContent+='  — 이 단계를 모두 마쳤어요!';finish(r)}
+   }else{tried=true;fb.className='fb no';fb.textContent='순서가 달라요. to 뒤에 동사원형이 바로 이어지는지 확인해 봐요!'}
+  };
+ };
+ show();
+},
+write(st,el,r){
+ r.total=st.frames.length;
+ el.innerHTML=st.frames.map((f,k)=>`<label>${k+1}. <b>${f}</b>…</label><input type="text" id="w${k}" value="${texts[k].replace(/"/g,'&quot;')}" placeholder="동사원형으로 이어서 써 보세요"><details class="bankbox" open><summary>💡 단어 힌트 (눌러서 넣어요)</summary><div class="bank" id="bk${k}"></div></details>`).join('')+
+ `<div class="fb" id="fb" aria-live="polite"></div><button class="btn" id="ck">완성하기</button>
+ <div class="box" style="margin-top:12px"><b>스스로 점검</b><br>☐ to 뒤에 동사원형을 썼나요?<br>☐ 문장 처음은 대문자, 끝에는 마침표(.)를 썼나요?</div>`;
+ st.frames.forEach((_,k)=>{const bk=el.querySelector('#bk'+k),inp=el.querySelector('#w'+k);
+  st.bank[k].forEach(([en,ko])=>{const b=document.createElement('button');b.type='button';b.className='chipb';b.innerHTML='<b>'+en+'</b><small>'+ko+'</small>';b.onclick=()=>{inp.value=en;inp.focus()};bk.appendChild(b)})});
+ el.querySelector('#ck').onclick=()=>{
+  const v=st.frames.map((_,k)=>el.querySelector('#w'+k).value.trim());
+  const fb=el.querySelector('#fb');
+  if(v.some(x=>x.split(/\s+/).filter(Boolean).length<2)){fb.className='fb no';fb.textContent='세 문장 모두 두 낱말 이상으로 써 주세요. (동사원형 + …)';return}
+  texts=v;r.ok=st.frames.length;fb.className='fb ok';
+  fb.innerHTML='완성! 🎉<br>'+st.frames.map((f,k)=>`<span class="kr" style="font-weight:400">${f}${v[k].replace(/[<>&]/g,'')}.</span>`).join('<br>');
+  finish(r);
+ };
+}};
+function summary(){
+ const tot=res.reduce((a,b)=>a+b.ok,0),all=res.reduce((a,b)=>a+b.total,0);
+ app.innerHTML=`<section class="card"><h2>학습 결과 🎓</h2><label>이름 <input type="text" id="nm" value="${stuName.replace(/"/g,'&quot;')}" placeholder="이름을 써 보세요"></label>
+ <p class="big" id="who">${stuName?stuName+' 학생, ':''}${tot} / ${all}</p><p class="kr" style="text-align:center">처음 시도에서 맞힌 개수예요.</p>
+ <table>${S.map((s,i)=>`<tr><td>${s.title}</td><td><b>${res[i].ok} / ${res[i].total}</b></td></tr>`).join('')}</table>
+ <p><b>내가 쓴 to부정사 문장</b></p>${S[5].frames.map((f,k)=>`<p>${f}${texts[k].replace(/[<>&]/g,'')}.</p>`).join('')}
+ <p><b>정리</b><br>• to + 동사원형 = ~하기 위해서 (목적)<br>• "Why ~?"에는 "To ~."로 대답해요<br>• to~를 빼도 문장이 완전하면 부사적 용법</p>
+ <div class="noprint"><button class="btn sec" id="re">처음부터 다시</button> <button class="btn" id="pr">인쇄하기</button></div></section>`;
+ document.getElementById('nm').oninput=e=>{stuName=e.target.value;document.getElementById('who').textContent=(stuName?stuName+' 학생, ':'')+tot+' / '+all};
+ document.getElementById('re').onclick=()=>{res.forEach(r=>{r.ok=0;r.total=0;r.done=false});texts=['','',''];cur=0;render()};
+ document.getElementById('pr').onclick=()=>window.print();
+}
+render();
+</script>
+</body>
+</html>

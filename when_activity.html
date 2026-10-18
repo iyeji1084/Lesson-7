@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>when 단계별 연습</title>
+<style>
+:root{--bg:#F6FAFC;--card:#FFFFFF;--ink:#1B2A3A;--muted:#5F7186;--navy:#0B3C5D;--teal:#0B7A8F;--coral:#D1495B;--amber:#F2A541;--line:#BFD7DF;--ok:#1F7A4F;--okbg:#E3F4EA;--badbg:#FCE8EB;--tealbg:#E8F3F7;--onaccent:#FFFFFF}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0F1A24;--card:#16242F;--ink:#E8F1F6;--muted:#9FB3C4;--navy:#9ED3E6;--teal:#4FC3D9;--coral:#FF8A98;--amber:#F2B45A;--line:#2D4455;--ok:#6FD3A0;--okbg:#173B2B;--badbg:#47202A;--tealbg:#173342;--onaccent:#0F1A24}}
+:root[data-theme="dark"]{--bg:#0F1A24;--card:#16242F;--ink:#E8F1F6;--muted:#9FB3C4;--navy:#9ED3E6;--teal:#4FC3D9;--coral:#FF8A98;--amber:#F2B45A;--line:#2D4455;--ok:#6FD3A0;--okbg:#173B2B;--badbg:#47202A;--tealbg:#173342;--onaccent:#0F1A24}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif;font-size:17px;line-height:1.6}
+main{max-width:720px;margin:0 auto;padding:16px}
+h1{font-size:22px;margin:4px 0 12px;color:var(--navy)}
+h2{font-size:20px;margin:0 0 10px;color:var(--navy)}
+.steps{display:flex;gap:6px;margin-bottom:14px}
+.pill{flex:1;height:10px;border-radius:6px;background:var(--line)}
+.pill.on{background:var(--amber)}.pill.done{background:var(--teal)}
+.stepname{font-size:14px;color:var(--muted);margin-bottom:8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.lesson{background:var(--tealbg)}
+.big{font-size:24px;font-weight:700;text-align:center;margin:8px 0}
+.w{color:var(--coral);font-weight:700}.s{color:var(--teal);font-weight:700}.v{color:var(--navy);font-weight:700}.cm{color:var(--coral);font-weight:700;font-size:1.3em}
+.kr{color:var(--muted);margin:2px 0 8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:10px 0 2px}
+.chip{text-align:center}
+.chip b{display:block;padding:6px 12px;border-radius:10px;background:var(--card);border:2px solid var(--line);font-size:18px}
+.chip small{color:var(--muted);font-size:13px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:520px){.two{grid-template-columns:1fr}}
+.box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.opt,.btn,.tile{font:inherit;color:var(--ink);cursor:pointer;border-radius:12px;border:2px solid var(--line);background:var(--card);padding:10px 14px;min-height:44px}
+.opt{display:block;width:100%;text-align:left;margin:8px 0}
+.opt:hover,.tile:hover{border-color:var(--teal)}
+.opt.bad{background:var(--badbg);border-color:var(--coral);opacity:.8}
+.opt.good{background:var(--okbg);border-color:var(--ok)}
+.btn{background:var(--teal);border-color:var(--teal);color:var(--onaccent);font-weight:700}
+.btn.sec{background:var(--card);color:var(--ink);border-color:var(--line)}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+.nav{display:flex;justify-content:space-between;gap:10px;margin:6px 0 24px}
+.fb{min-height:28px;font-weight:700;margin:8px 0}
+.fb.ok{color:var(--ok)}.fb.no{color:var(--coral)}
+.area{min-height:56px;border:2px dashed var(--line);border-radius:12px;padding:8px;display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.pool{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.tile{padding:8px 12px;font-size:18px}
+input[type=text]{font:inherit;color:var(--ink);background:var(--card);border:2px solid var(--line);border-radius:10px;padding:8px 10px;width:100%;margin:4px 0 10px;min-height:44px}
+.cnt{color:var(--muted);font-size:14px}
+table{width:100%;border-collapse:collapse}td,th{padding:8px;border-bottom:1px solid var(--line);text-align:left}
+.wd{margin:10px 0}.wdl{background:var(--tealbg);border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin-top:8px;font-size:16px}.wdl div{margin:2px 0}.wdl b{color:var(--teal)}
+@media print{.nav,.steps,.noprint{display:none}}
+</style>
+</head>
+<body>
+<main>
+<h1>when 단계별 연습 ☁️</h1>
+<div class="steps" id="steps"></div>
+<div id="app"></div>
+</main>
+<script>
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const shuffle=a=>{let b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b};
+const OKS=['정답! 👍','잘했어요! ✨','맞아요! 🎉'], NOS=['앗, 다시 한번 생각해 봐요.','아쉬워요. 다시 골라 봐요!'];
+
+const S=[
+{title:'1단계 · when의 뜻과 단어',lesson:`<p><span class="w">when</span>은 <b>'~할 때'</b>라는 뜻이에요. 어떤 일이 일어나는 <b>때</b>를 알려 줘요.</p>
+<p class="big">I am happy <span class="w">when</span> I play the piano.</p><p class="kr" style="text-align:center">나는 피아노를 칠 <b>때</b> 행복하다.</p><p>먼저 문장에 나오는 단어부터 익혀 볼까요?</p>`,
+type:'mcq',items:[
+{q:'when',a:'~할 때',o:['~해서','~하려고']},{q:'rain',a:'비',o:['눈','바람']},{q:'rise (해가)',a:'뜨다',o:['지다','떨어지다']},
+{q:'arrive',a:'도착하다',o:['떠나다','시작하다']},{q:'young',a:'어린',o:['나이 든','키 큰']},{q:'begin',a:'시작하다',o:['끝나다','멈추다']}]},
+{title:'2단계 · when 덩어리 만들기',lesson:`<p>when 뒤에는 <b>주어 + 동사</b>가 와요. 이 덩어리가 <b>'~할 때'</b>가 돼요.</p>
+<div class="chips"><div class="chip"><b class="w">when</b><small>~할 때</small></div><div class="chip"><b class="s">I</b><small>주어</small></div><div class="chip"><b class="v">play</b><small>동사</small></div><div class="chip"><b>the piano</b><small>나머지</small></div></div>
+<p class="kr" style="text-align:center">when + 주어 + 동사 = ~가 …할 때</p><p>우리말을 보고 낱말을 눌러 when 덩어리를 만들어 보세요.</p>`,
+type:'order',items:[
+{kr:'내가 피아노를 칠 때',t:['when','I','play','the piano']},{kr:'비가 그칠 때',t:['when','the rain','stops']},{kr:'그녀가 도착할 때',t:['when','she','arrives']},
+{kr:'해가 뜰 때',t:['when','the sun','rises']},{kr:'내가 어렸을 때',t:['when','I','was','young']}]},
+{title:'3단계 · when 덩어리의 위치와 쉼표',lesson:`<p>when 덩어리는 문장 <b>앞</b>에도, <b>뒤</b>에도 올 수 있어요. 단, <b>앞에 올 때만 쉼표(<span class="cm">,</span>)</b>를 써요!</p>
+<div class="two"><div class="box"><b>앞에 올 때</b><br><span class="w">When</span> it rains<span class="cm">,</span> I stay indoors.<div class="kr">쉼표 있음 ✔</div></div>
+<div class="box"><b>뒤에 올 때</b><br>I stay indoors <span class="w">when</span> it rains.<div class="kr">쉼표 없음 ✔</div></div></div>`,
+type:'mcq',fixed:true,items:[
+{kr:'비가 그치면 우리는 산책하러 갈 것이다.',q:'쉼표를 바르게 쓴 문장은?',a:'When the rain stops, we will go for a walk.',o:['When the rain stops we will go for a walk.']},
+{kr:'나는 친구들과 이야기할 때 행복하다.',q:'쉼표를 바르게 쓴 문장은?',a:'I feel happy when I talk to my friends.',o:['I feel happy, when I talk to my friends.']},
+{kr:'그녀가 도착하면 우리는 회의를 시작할 것이다.',q:'쉼표를 바르게 쓴 문장은?',a:'When she arrives, we will start the meeting.',o:['When she arrives we will start the meeting.']},
+{kr:'나는 어렸을 때 제니 옆집에 살았다.',q:'쉼표를 바르게 쓴 문장은?',a:'I lived next door to Jenny when I was young.',o:['I lived next door to Jenny, when I was young.']}]},
+{title:'4단계 · when 문장 완성하기',lesson:`<p>when 문장은 <b>'~할 때'(when 덩어리)</b>와 <b>'그때 일어나는 일'</b> 두 부분이에요.</p>
+<p class="big"><span class="w">When the sun rises in the morning,</span> the jellyfish swim toward the sun.</p>
+<p class="kr" style="text-align:center">해가 뜰 때, → 해파리들은 태양 쪽으로 헤엄친다.</p><p>우리말을 보고 알맞은 뒷부분을 고르세요.</p>`,
+type:'mcq',items:[
+{kr:'우기가 시작되면, 수백만 마리의 붉은게들이 바다 쪽으로 행진한다.',q:'When the rainy season begins, ____',a:'millions of red crabs march toward the ocean.',o:['the jellyfish swim toward the sun.','I like to stay indoors.']},
+{kr:'아침에 해가 뜨면, 황금해파리들은 태양 쪽으로 헤엄친다.',q:'When the sun rises in the morning, ____',a:'the jellyfish swim toward the sun.',o:['millions of red crabs march toward the ocean.','the sky turns orange.']},
+{kr:'내가 피아노를 칠 때, 나는 행복하다.',q:'When I play the piano, ____',a:'I am happy.',o:['the sky turns orange.','we will start the meeting.']},
+{kr:'해가 지면, 하늘이 오렌지색으로 변한다.',q:'When the sun sets, ____',a:'the sky turns orange.',o:['I am happy.','millions of red crabs march toward the ocean.']}]},
+{title:'5단계 · when 문장 배열하기',lesson:`<p>순서를 만드는 방법이에요.</p><p>① <span class="w">when 덩어리</span>를 먼저 만든다 → ② 나머지(그때 일어나는 일)를 붙인다.</p>
+<p>우리말이 <b>'~할 때,'로 시작</b>하면 <span class="w">When</span>으로 문장을 시작하고 <span class="cm">,</span>를 잊지 마세요!</p><p>낱말을 눌러 전체 문장을 완성해 보세요.</p>`,
+type:'order',items:[
+{kr:'비가 올 때, 나는 집 안에 있는 것을 좋아한다.',t:['When','it','rains,','I','like','to','stay','indoors.']},
+{kr:'나는 친구들과 이야기할 때 행복하다.',t:['I','feel','happy','when','I','talk','to','my','friends.']},
+{kr:'해가 지면, 하늘이 오렌지색으로 변한다.',t:['When','the','sun','sets,','the','sky','turns','orange.']},
+{kr:'그녀가 도착하면, 우리는 회의를 시작할 것이다.',t:['When','she','arrives,','we','will','start','the','meeting.']},
+{kr:'나는 어렸을 때 제니 옆집에 살았다.',t:['I','lived','next','door','to','Jenny','when','I','was','young.']}]},
+{title:'6단계 · 나의 when 문장 쓰기',lesson:`<p>이제 <b>내 경험</b>으로 when 문장을 써 봐요. 감정을 느끼는 때를 생각해 보세요.</p><p class="kr">예) I feel happy when I am with my friends.</p><p>빈칸에 <b>주어 + 동사 …</b>를 넣어 문장을 완성하세요.</p>`,
+type:'write',frames:['I feel happy when I ','I feel sad when I ','I feel excited when I ']}
+];
+const res=S.map(()=>({ok:0,total:0,done:false}));let cur=0,texts=['','',''],stuName='';
+const stepsEl=document.getElementById('steps'),app=document.getElementById('app');
+
+function bar(){stepsEl.innerHTML=S.concat([0]).map((_,i)=>`<div class="pill ${i<cur?'done':i===cur?'on':''}"></div>`).join('')}
+function render(){
+ bar();window.scrollTo(0,0);
+ if(cur===S.length)return summary();
+ const st=S[cur];
+ app.innerHTML=`<div class="stepname">${cur+1} / ${S.length}</div><section class="card lesson"><h2>${st.title}</h2>${st.lesson}</section><section class="card" id="prac"></section>
+ <div class="nav"><button class="btn sec" id="prev" ${cur===0?'disabled':''}>◀ 이전</button><button class="btn" id="next" ${res[cur].done?'':'disabled'}>${cur===S.length-1?'결과 보기 ▶':'다음 단계 ▶'}</button></div>`;
+ document.getElementById('prev').onclick=()=>{cur--;render()};
+ document.getElementById('next').onclick=()=>{cur++;render()};
+ PR[st.type](st,document.getElementById('prac'),res[cur]);
+}
+function finish(r){r.done=true;const n=document.getElementById('next');if(n)n.disabled=false}
+
+const RAW=`animal:동물|arrive:도착하다|asleep:잠이 든|away:멀리, 떨어져|bag:가방|band:밴드, 악단|baseball:야구|bat:박쥐|begin:시작하다|began:시작했다 (begin의 과거)|best:가장 좋은|bike:자전거|bird:새|birthday:생일|blue:푸른, 파란|book:책|borrow:빌리다|bread:빵|bridge:다리|build:짓다, (다리를) 놓다|buy:사다|cake:케이크|call:전화하다, 부르다|came:왔다 (come의 과거)|car:자동차|change:바꾸다, 변하다|chocolate:초콜릿|class:수업, 반|close:닫다, 폐쇄하다|color:색깔|cook:요리하다|cool:시원하게 하다, 시원한|crab:게|cry:울다|day:날, 하루|dog:개|door:문|early:일찍|eat:먹다|energy:에너지|enjoy:즐기다|every:모든, ~마다|everyone:모든 사람|exam:시험|exercise:운동하다, 운동|face:얼굴|fall:떨어지다 (fall asleep = 잠들다)|fan:선풍기|fashionable:멋진, 유행하는|feel:느끼다, ~한 기분이 들다|fell:떨어졌다, 빠졌다 (fall의 과거)|find:찾다|follow:따라가다|friend:친구|fruit:과일|game:경기, 게임|get:얻다, 받다|go:가다|golden:황금빛의|good:좋은|grade:성적, 학년|grandma:할머니|guitar:기타|happy:행복한|hard:열심히, 어려운|hat:모자|healthy:건강한|hear:듣다|heard:들었다 (hear의 과거)|helmet:헬멧|help:돕다|hiking:하이킹, 도보 여행|home:집|hope:바라다, 희망하다|indoors:실내에서, 집 안에|invite:초대하다|jellyfish:해파리|join:가입하다, 함께하다|joke:농담|laugh:웃다|learn:배우다|leave:떠나다|left:떠났다 (leave의 과거)|letter:편지|library:도서관|like:좋아하다|live:살다|look:~하게 보이다, 보다|loudly:크게, 시끄럽게|made:만들었다 (make의 과거)|make:만들다|map:지도|march:행진하다|meeting:회의|media:매체|million:100만, 수많은|money:돈|morning:아침|move:움직이다, 이사하다|movie:영화|nature:자연|need:필요하다|nervous:긴장한|new:새로운|next:다음의, 옆의|ocean:바다, 대양|old:나이 든, ~살의|only:겨우, 오직|orange:오렌지색(의)|other:다른|out:밖으로|over:끝난, ~위에|park:공원|party:파티|people:사람들|piano:피아노|picture:사진, 그림|place:장소, 집|play:연주하다, 놀다, (경기를) 하다|post:(글·사진을) 올리다|practice:연습하다|protect:보호하다|rain:비, 비가 오다|rainy:비가 오는|ran:달렸다 (run의 과거)|read:읽다|red:붉은|ride:(탈것을) 타다|rise:(해가) 뜨다|road:도로|room:방|run:달리다|save:모으다, 저축하다|saw:보았다 (see의 과거)|school:학교|season:계절|seat:자리, 좌석|see:보다|set:(해가) 지다|sing:노래하다|sky:하늘|social:사회적인|song:노래|soon:곧|spend:(시간을) 보내다, (돈을) 쓰다|stadium:경기장|start:시작하다|stay:유지하다, 머무르다|stop:멈추다, 그치다|store:가게|study:공부하다|sun:해, 태양|sunglasses:선글라스|swim:헤엄치다|take:(시험을) 보다, 가지다|talk:이야기하다|teacher:선생님|test:시험|thank:감사하다|theater:극장|themselves:그들 자신|time:시간|tired:피곤한|together:함께|toward:~쪽으로|travel:여행하다, 이동하다|turn:변하다, (turn on) 켜다|use:사용하다|visit:방문하다|walk:걷다, 산책하다|want:원하다|warm:따뜻한|watch:보다, 지켜보다|wear:입다, 쓰다, 착용하다|went:갔다 (go의 과거)|way:길, 방법|wild:야생의|wore:입었다, 썼다 (wear의 과거)|write:쓰다|wrote:썼다 (write의 과거)|year:해, 년|young:어린`;
+const DICT={};RAW.split('|').forEach(p=>{const i=p.indexOf(':');if(i>0)DICT[p.slice(0,i).trim()]=p.slice(i+1).trim()});
+function findW(w){
+ const c=[w,w.replace(/ies$/,'y'),w.replace(/es$/,''),w.replace(/s$/,''),w.replace(/ied$/,'y'),w.replace(/ed$/,''),w.replace(/ed$/,'e'),w.replace(/(.)\1ed$/,'$1'),w.replace(/ing$/,''),w.replace(/ing$/,'e'),w.replace(/(.)\1ing$/,'$1'),w.replace(/er$/,'')];
+ for(const x of c){if(x&&DICT[x])return [x,DICT[x]]}
+ return null;
+}
+function wordsIn(t){const seen={},out=[];(String(t).replace(/<[^>]+>/g,' ').toLowerCase().match(/[a-z]+/g)||[]).forEach(w=>{const f=findW(w);if(f&&!seen[f[0]]){seen[f[0]]=1;out.push([w,f[0],f[1]])}});return out}
+function hintUI(box,text,before){
+ const ws=wordsIn(text);if(!ws.length)return;
+ const wrap=document.createElement('div');wrap.className='wd';
+ const b=document.createElement('button');b.type='button';b.className='btn sec';b.textContent='📖 단어 뜻 보기';
+ const list=document.createElement('div');list.className='wdl';list.hidden=true;
+ ws.forEach(([w,x,m])=>{const r=document.createElement('div');const s=document.createElement('b');s.textContent=w===x?w:w+' ('+x+')';r.append(s,' — '+m);list.appendChild(r)});
+ b.onclick=()=>{list.hidden=!list.hidden;b.textContent=list.hidden?'📖 단어 뜻 보기':'📖 단어 뜻 닫기'};
+ wrap.append(b,list);box.insertBefore(wrap,before||null);
+}
+const PR={
+mcq(st,el,r){
+ const items=st.items;let i=0;
+ r.total=items.length;
+ const show=()=>{
+  const it=items[i];let wrong=false;
+  const opts=st.fixed?[it.a].concat(it.o).sort():shuffle([it.a].concat(it.o));
+  el.innerHTML=`<div class="cnt">문제 ${i+1} / ${items.length}</div>${it.kr?`<p class="kr">${it.kr}</p>`:''}<p class="big">${it.q}</p><div id="o"></div><div class="fb" id="fb" aria-live="polite"></div><div id="nx"></div>`;
+  const o=el.querySelector('#o'),fb=el.querySelector('#fb');
+  if(it.kr)hintUI(el,it.q+' '+it.a+' '+it.o.join(' '),fb);
+  opts.forEach(t=>{const b=document.createElement('button');b.className='opt';b.textContent=t;
+   b.onclick=()=>{
+    if(t===it.a){b.classList.add('good');if(!wrong)r.ok++;fb.className='fb ok';fb.textContent=pick(OKS);
+     o.querySelectorAll('.opt').forEach(x=>x.disabled=true);
+     const nx=el.querySelector('#nx');
+     if(i<items.length-1){nx.innerHTML='<button class="btn">다음 문제 ▶</button>';nx.firstChild.onclick=()=>{i++;show()}}
+     else{fb.textContent+=' 이 단계를 모두 마쳤어요!';finish(r)}
+    }else{wrong=true;b.classList.add('bad');b.disabled=true;fb.className='fb no';fb.textContent=pick(NOS)}
+   };o.appendChild(b)});
+ };
+ show();
+},
+order(st,el,r){
+ const items=st.items;let i=0;r.total=items.length;
+ const show=()=>{
+  const it=items[i];let tried=false,used=[];
+  let pool=it.t.map((t,k)=>({t,k}));
+  do{pool=shuffle(pool)}while(pool.length>1&&pool.map(p=>p.k).join()===it.t.map((_,k)=>k).join());
+  el.innerHTML=`<div class="cnt">문제 ${i+1} / ${items.length}</div><p class="big" style="font-size:20px">${it.kr}</p><div class="area" id="ar"></div><div class="pool" id="pl"></div><div class="fb" id="fb" aria-live="polite"></div>
+  <div><button class="btn sec" id="rs">다시 놓기</button> <button class="btn" id="ck">확인</button> <span id="nx"></span></div>`;
+  const ar=el.querySelector('#ar'),pl=el.querySelector('#pl'),fb=el.querySelector('#fb');
+  hintUI(el,it.t.join(' '),el.querySelector('#rs').parentNode);
+  const draw=()=>{
+   ar.innerHTML='';pl.innerHTML='';
+   used.forEach(p=>{const b=document.createElement('button');b.className='tile';b.textContent=p.t;b.onclick=()=>{used=used.filter(x=>x!==p);draw()};ar.appendChild(b)});
+   pool.filter(p=>!used.includes(p)).forEach(p=>{const b=document.createElement('button');b.className='tile';b.textContent=p.t;b.onclick=()=>{used.push(p);draw()};pl.appendChild(b)});
+  };
+  draw();
+  el.querySelector('#rs').onclick=()=>{used=[];fb.textContent='';draw()};
+  el.querySelector('#ck').onclick=()=>{
+   if(used.length<pool.length){fb.className='fb no';fb.textContent='낱말을 모두 사용해 보세요.';return}
+   const ans=used.map(p=>p.t).join(' ');
+   if(ans===it.t.join(' ')){if(!tried)r.ok++;fb.className='fb ok';fb.textContent=pick(OKS)+'  '+ans;
+    ar.querySelectorAll('button').forEach(b=>b.disabled=true);el.querySelector('#ck').disabled=true;el.querySelector('#rs').disabled=true;
+    const nx=el.querySelector('#nx');
+    if(i<items.length-1){nx.innerHTML='<button class="btn">다음 문제 ▶</button>';nx.firstChild.onclick=()=>{i++;show()}}
+    else{fb.textContent+='  — 이 단계를 모두 마쳤어요!';finish(r)}
+   }else{tried=true;fb.className='fb no';fb.textContent='순서가 달라요. when 덩어리(주어+동사)가 이어지는지 확인해 봐요!'}
+  };
+ };
+ show();
+},
+write(st,el,r){
+ r.total=st.frames.length;
+ el.innerHTML=st.frames.map((f,k)=>`<label>${k+1}. <b>${f}</b>…</label><input type="text" id="w${k}" value="${texts[k].replace(/"/g,'&quot;')}" placeholder="예) talk with my friends">`).join('')+
+ `<div class="fb" id="fb" aria-live="polite"></div><button class="btn" id="ck">완성하기</button>
+ <div class="box" style="margin-top:12px"><b>스스로 점검</b><br>☐ when 뒤에 주어와 동사가 있나요?<br>☐ 문장 처음은 대문자, 끝에는 마침표(.)를 썼나요?</div>`;
+ el.querySelector('#ck').onclick=()=>{
+  const v=st.frames.map((_,k)=>el.querySelector('#w'+k).value.trim());
+  const fb=el.querySelector('#fb');
+  if(v.some(x=>x.split(/\s+/).filter(Boolean).length<2)){fb.className='fb no';fb.textContent='세 문장 모두 두 낱말 이상으로 써 주세요. (주어 + 동사 …)';return}
+  texts=v;r.ok=st.frames.length;fb.className='fb ok';
+  fb.innerHTML='완성! 🎉<br>'+st.frames.map((f,k)=>`<span class="kr" style="font-weight:400">${f}${v[k].replace(/[<>&]/g,'')}.</span>`).join('<br>');
+  finish(r);
+ };
+}};
+function summary(){
+ const tot=res.reduce((a,b)=>a+b.ok,0),all=res.reduce((a,b)=>a+b.total,0);
+ app.innerHTML=`<section class="card"><h2>학습 결과 🎓</h2><label>이름 <input type="text" id="nm" value="${stuName.replace(/"/g,'&quot;')}" placeholder="이름을 써 보세요"></label>
+ <p class="big" id="who">${stuName?stuName+' 학생, ':''}${tot} / ${all}</p><p class="kr" style="text-align:center">처음 시도에서 맞힌 개수예요.</p>
+ <table>${S.map((s,i)=>`<tr><td>${s.title}</td><td><b>${res[i].ok} / ${res[i].total}</b></td></tr>`).join('')}</table>
+ <p><b>내가 쓴 when 문장</b></p>${S[5].frames.map((f,k)=>`<p>${f}${texts[k].replace(/[<>&]/g,'')}.</p>`).join('')}
+ <p><b>정리</b><br>• when = ~할 때<br>• when + 주어 + 동사 (when 덩어리)<br>• 앞에 오면 쉼표(,), 뒤에 오면 쉼표 없음</p>
+ <div class="noprint"><button class="btn sec" id="re">처음부터 다시</button> <button class="btn" id="pr">인쇄하기</button></div></section>`;
+ document.getElementById('nm').oninput=e=>{stuName=e.target.value;document.getElementById('who').textContent=(stuName?stuName+' 학생, ':'')+tot+' / '+all};
+ document.getElementById('re').onclick=()=>{res.forEach(r=>{r.ok=0;r.total=0;r.done=false});texts=['','',''];cur=0;render()};
+ document.getElementById('pr').onclick=()=>window.print();
+}
+render();
+</script>
+</body>
+</html>
